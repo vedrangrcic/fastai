@@ -467,6 +467,25 @@ class ImageClassifierData(ImageData):
         datasets = cls.get_ds(f, trn, val, tfms, test=test)
         return cls(path, datasets, bs, num_workers, classes=classes)
 
+		
+    @classmethod
+    def LoadDataFromPaths(cls, rootPath, batchSize=64, transformations=(None,None), trainSubFolderName='train', validationSubFolderName='valid', testSubFolderName=None, test_with_labels=False, num_workers=8):
+        """ Read in images and their labels given as sub-folder names
+
+        Arguments:
+            rootPath: a root path of the data (used for storing trained models, precomputed values, etc)
+            batchSize: batch size
+            transformations: transformations (for data augmentations). e.g. output of `tfms_from_model`
+            trainSubFolderName: a name of the subfolder that contains training images.
+            validationSubFolderName:  a name of the subfolder that contains validation images.
+            testSubFolderName:  a name of the subfolder that contains test images.
+            num_workers: number of workers
+
+        Returns:
+            ImageClassifierData
+        """
+	return from_paths(cls,rootPath,batchSize,transformations,trainSubFolderName,validationSubFolderName,testSubFolderName,test_with_labels,num_workers)
+		
     @classmethod
     def from_paths(cls, path, bs=64, tfms=(None,None), trn_name='train', val_name='valid', test_name=None, test_with_labels=False, num_workers=8):
         """ Read in images and their labels given as sub-folder names
