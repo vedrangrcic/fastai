@@ -484,7 +484,7 @@ class ImageClassifierData(ImageData):
         Returns:
             ImageClassifierData
         """
-        return cls.from_paths(cls,rootPath,batchSize,transformations,trainSubFolderName,validationSubFolderName,testSubFolderName,test_with_labels,num_workers)
+        return cls.from_paths(cls,rootPath,bs=batchSize,tfms=transformations,trn_name=trainSubFolderName,val_name=validationSubFolderName,test_name=testSubFolderName,test_with_labels=test_with_labels,num_workers=num_workers)
 		
     @classmethod
     def from_paths(cls, path, bs=64, tfms=(None,None), trn_name='train', val_name='valid', test_name=None, test_with_labels=False, num_workers=8):
